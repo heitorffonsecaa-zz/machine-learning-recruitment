@@ -12,17 +12,14 @@ dataset = pd.DataFrame.from_dict(data)
 # -----------------------------------------------------------------------
 # Pré-processamento do alvo e das variáveis de entrada
 # -----------------------------------------------------------------------
-dataset['DETACH'] = [1 if not np.isnan(int(x)) and int(x) > 365 else 0 for x in
-                     dataset['unemployed_time']]  # pessoas que tiveram mais de 1 ano de serviço
+dataset['DETACH'] = [1 if not np.isnan(int(x)) and int(x) > 365 else 0 for x in dataset['unemployed_time']]  # pessoas que tiveram mais de 1 ano de serviço
 
 dataset['PRE_AGE'] = [16 if np.isnan(int(x)) or x < 16 else x for x in dataset['age']]
 dataset['PRE_AGE'] = [1 if x > 65 else (x - 16) / (65 - 16) for x in dataset['PRE_AGE']]
 dataset['PRE_GENDER_M'] = [1 if x == 'male' else 0 for x in dataset['gender']]
 dataset['PRE_EMPLOYEE'] = [1 if x == 'yes' else 0 for x in dataset['still_work']]  # se ainda trabalha
-dataset['PRE_CHANGE'] = [1 if x == 'yes' else 0 for x in
-                         dataset['possibility_of_change']]  # se tem possibilidade de mudança
-dataset['PRE_REMOTE'] = [1 if x == 'yes' else 0 for x in
-                         dataset['is_remote']]  # se tem possibilidate de trabalhar remoto
+dataset['PRE_CHANGE'] = [1 if x == 'yes' else 0 for x in dataset['possibility_of_change']]  # se tem possibilidade de mudança
+dataset['PRE_REMOTE'] = [1 if x == 'yes' else 0 for x in dataset['is_remote']]  # se tem possibilidate de trabalhar remoto
 dataset['PRE_WORK_REGIME_PJ'] = [1 if x == 'PJ' else 0 for x in dataset['work_regime']]  # regime PJ
 dataset['PRE_CNH'] = [1 if x == 'yes' else 0 for x in dataset['has_cnh']]  # se tem CNH
 dataset['PRE_ENGLISH'] = [1 if x == 'yes' else 0 for x in dataset['speak_english']]  # se fala inglês
